@@ -1,0 +1,22 @@
+
+version: "3"
+services:
+  dev: # docker run -it 0v ${PWD}:/usr/src/app -w /usr/src/app -p 5000:5000 vim-python:alpha /bin/bash
+    container_name: vim-flask
+    build:
+      context: app
+      target: dev
+    # stdin_open: true
+    # tty: true
+    volumes:
+      - ./app:/usr/src/app
+    ports:
+      - 5000:5000
+
+  prod: 
+    container_name: flask_prod
+    build:
+      context: app
+      target: prod
+    ports:
+      - 5001:5000
